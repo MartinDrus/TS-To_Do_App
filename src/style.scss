@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16pt;
+}
+
+body {
+    line-height: 1.5;
+}
+
+#app {
+
+    display: flex;
+    justify-content: center;
+
+
+    form {
+        margin: 5rem;
+
+        input,button{
+            height: 2rem;
+        }
+
+        input {
+            border-radius: 5px 0 0 5px ;
+            padding: 0 1rem;
+            
+
+        }
+        button {
+            border-radius: 0 5px 5px 0;
+            padding: 0 1rem;
+            border-left: none;
+
+        }
+    }
+}
