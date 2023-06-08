@@ -75,7 +75,7 @@ function addListItem(task: Task) {
   const checkbox = document.createElement("input");
   const deleteButton = document.createElement("button");
   const logo = document.createElement("img");
-  logo.src = '../src/assets/trash-bin-logo.png'
+  logo.src = './src/images/trash-bin-logo.png'
 
   checkbox.addEventListener("change", () => {
     task.completed = checkbox.checked; // Update the completion status of the task
