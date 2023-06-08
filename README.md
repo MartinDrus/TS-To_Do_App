@@ -4,7 +4,7 @@ This is a simple task manager application built with JavaScript and TypeScript.
 
 ## Try It
 
-You can try out the application by visiting [TS-To_Do_App](https://martindrus.github.io/TS-To_Do_App/).
+You can try out the application by visiting [TS-To_Do_App](https://ts-to-do-app.vercel.app/).
 
 ## Usage
 
