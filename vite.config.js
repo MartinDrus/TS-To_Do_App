@@ -1,6 +1,9 @@
-// vite.config.ts
+// vite.config.js
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/TS-To_Do_App', 
+  base: '/MartinDrus/TS-To_Do_App/',
+  build: {
+    outDir: 'dist',
+  },
 });
