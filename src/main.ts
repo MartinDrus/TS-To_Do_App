@@ -1,6 +1,8 @@
 import './style.scss'; // Import the SCSS styles
 import { v4 as uuidV4 } from 'uuid'; // Import the uuid library for generating unique IDs
 
+import * as fe from './images/trash-bin-logo.png'
+
 // Define the Task type
 type Task = {
   id: string;
@@ -75,7 +77,7 @@ function addListItem(task: Task) {
   const checkbox = document.createElement("input");
   const deleteButton = document.createElement("button");
   const logo = document.createElement("img");
-  logo.src = '../../src/images/trash-bin-logo.png';
+  logo.src = './images/trash-bin-logo.png';
   logo.loading = "lazy";
 
   checkbox.addEventListener("change", () => {
