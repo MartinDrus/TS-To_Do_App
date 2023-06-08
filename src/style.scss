@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 *,
 *::before,
@@ -7,7 +7,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 16pt;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -44,7 +44,6 @@ body {
       &:hover {
         background-color: #6d8aaa;
         color: #f6f0f0;
-
       }
     }
   }
@@ -65,17 +64,15 @@ body {
         label {
           display: flex;
           align-items: center;
-
-
         }
         input {
-            margin: 0 1rem;
+          margin: 0 1rem;
         }
         button {
-            padding: 0.1rem;
-            img {
-                width: 25px;
-            }
+          padding: 0.1rem;
+          img {
+            width: 25px;
+          }
         }
       }
     }
@@ -83,5 +80,5 @@ body {
 }
 
 .doneTask {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
