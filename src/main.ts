@@ -1,21 +1,29 @@
-import './style.scss';
-import { v4 as uuidV4 } from 'uuid';
+import './style.scss'; // Import the SCSS styles
+import { v4 as uuidV4 } from 'uuid'; // Import the uuid library for generating unique IDs
 
+// Define the Task type
 type Task = {
-  id: string,
-  title: string,
-  completed: boolean,
-  createdAt: Date
-}
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: Date;
+};
 
+// Load tasks from local storage
 const tasks: Task[] = loadTasks();
-tasks.forEach(addListItem)
 
+// Select the #app container
 const appDiv = document.querySelector<HTMLDivElement>('#app')!;
 
 // Create the list element
 const list = document.createElement('ul');
-appDiv.appendChild(list);
+const wrapper = document.createElement('div');
+wrapper.classList.add('listWrapper');
+wrapper.appendChild(list);
+appDiv.appendChild(wrapper);
+
+// Add existing tasks to the list
+tasks.forEach(addListItem);
 
 // Create the form element
 const form = document.createElement('form');
@@ -43,49 +51,65 @@ form.addEventListener('submit', (e) => {
 
   // Create a new task object
   const newTask: Task = {
-    id: uuidV4(), // Generate a unique ID using the uuid library (assuming it's imported and available)
+    id: uuidV4(), // Generate a unique ID using the uuid library
     title: input.value, // Set the title of the task to the value of the input field
     completed: false, // Set the initial completion status of the task to false
     createdAt: new Date() // Set the creation date of the task to the current date and time
   };
 
-  tasks.push(newTask);
+  tasks.push(newTask); // Add the new task to the tasks array
 
-  // Add the new task to the task list or perform any other necessary logic
+  // Add the new task to the list or perform any other necessary logic
   addListItem(newTask);
 
-  // Reset the input field value to an empty string
-  input.value = "";
+  input.value = ""; // Reset the input field value to an empty string
 });
-
-
 
 // Append the form to the app container
 appDiv.appendChild(form);
 
+// Function to add a task item to the list
 function addListItem(task: Task) {
-
   const item = document.createElement("li");
-  const label = document.createElement("label")
+  const label = document.createElement("label");
   const checkbox = document.createElement("input");
-  checkbox.addEventListener("change", ()=> {
-    task.completed = checkbox.checked;
-    saveTasks()
-  })
-  checkbox.type = "checkbox"
+  const deleteButton = document.createElement("button");
+
+  checkbox.addEventListener("change", () => {
+    task.completed = checkbox.checked; // Update the completion status of the task
+    saveTasks(); // Save the updated tasks to local storage
+  });
+
+  deleteButton.textContent = 'X';
+  deleteButton.addEventListener("click", () => {
+    deleteTask(task);
+    item.remove();
+  });
+
+  checkbox.type = "checkbox";
   checkbox.checked = task.completed;
-  label.append(checkbox, task.title);
+  label.append(task.title, checkbox, deleteButton);
   item.append(label);
   list?.append(item);
-
 }
 
+// Function to delete a task
+function deleteTask(task: Task) {
+  const taskIndex = tasks.findIndex((t) => t.id === task.id);
+  if (taskIndex !== -1) {
+    tasks.splice(taskIndex, 1); // Remove the task from the tasks array
+    saveTasks(); // Save the updated tasks to local storage
+  }
+}
+
+// Function to save tasks to local storage
 function saveTasks() {
-  localStorage.setItem("TASKS", JSON.stringify(tasks))
+  localStorage.setItem("TASKS", JSON.stringify(tasks));
 }
 
+// Function to load tasks from local storage
 function loadTasks(): Task[] {
-  const taskJSON = localStorage.getItem("TASKS")
-  if(taskJSON == null) return []
+  const taskJSON = localStorage.getItem("TASKS");
+  if (taskJSON == null) return [];
   return JSON.parse(taskJSON);
 }
