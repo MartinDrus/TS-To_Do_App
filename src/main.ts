@@ -74,13 +74,21 @@ function addListItem(task: Task) {
   const label = document.createElement("label");
   const checkbox = document.createElement("input");
   const deleteButton = document.createElement("button");
+  const logo = document.createElement("img");
+  logo.src = '../src/assets/trash-bin-logo.png'
 
   checkbox.addEventListener("change", () => {
     task.completed = checkbox.checked; // Update the completion status of the task
     saveTasks(); // Save the updated tasks to local storage
+
+    if (checkbox.checked) {
+      label.classList.add("doneTask"); // Add the .doneTask class to the label
+    } else {
+      label.classList.remove("doneTask"); // Remove the .doneTask class from the label
+    }
   });
 
-  deleteButton.textContent = 'X';
+  deleteButton.appendChild(logo)
   deleteButton.addEventListener("click", () => {
     deleteTask(task);
     item.remove();

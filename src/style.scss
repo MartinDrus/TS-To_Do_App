@@ -73,8 +73,15 @@ body {
         }
         button {
             padding: 0.1rem;
+            img {
+                width: 25px;
+            }
         }
       }
     }
   }
+}
+
+.doneTask {
+    text-decoration: line-through;
 }
